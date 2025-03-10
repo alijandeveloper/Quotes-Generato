@@ -48,11 +48,15 @@ body {
 
 .buttons {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 button {
     padding: 12px 16px;
-    margin: 5px;
     border: none;
     cursor: pointer;
     background: #ff4f7b;
@@ -74,6 +78,10 @@ button:hover {
 
 button i {
     font-size: 18px;
+}
+
+button:hover i {
+    color: white; 
 }
 
 @keyframes fadeIn {
