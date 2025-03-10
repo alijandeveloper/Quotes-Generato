@@ -21,3 +21,22 @@ function getNewQuote() {
     authorText.textContent = `- ${quote.author}`;
     document.body.style.background = `hsl(${Math.random() * 360}, 100%, 80%)`;
 }
+
+newQuoteBtn.addEventListener("click", getNewQuote);
+
+copyBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(quoteText.textContent);
+    alert("Quote copied!");
+});
+
+tweetBtn.addEventListener("click", () => {
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
+    window.open(tweetUrl, "_blank");
+});
+
+speakBtn.addEventListener("click", () => {
+    const utterance = new SpeechSynthesisUtterance(quoteText.textContent);
+    speechSynthesis.speak(utterance);
+});
+
+window.onload = getNewQuote;
