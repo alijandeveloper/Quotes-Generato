@@ -19,18 +19,22 @@ function getNewQuote() {
     const quote = quotes[randomIndex];
     quoteText.textContent = quote.text;
     authorText.textContent = `- ${quote.author}`;
-    document.body.style.background = `hsl(${Math.random() * 360}, 100%, 80%)`;
+    document.body.style.background = `hsl(${Math.random() * 360}, 80%, 80%)`;
+    quoteText.style.transform = "scale(1.05)";
+    setTimeout(() => {
+        quoteText.style.transform = "scale(1)";
+    }, 300);
 }
 
 newQuoteBtn.addEventListener("click", getNewQuote);
 
 copyBtn.addEventListener("click", () => {
-    navigator.clipboard.writeText(quoteText.textContent);
-    alert("Quote copied!");
+    navigator.clipboard.writeText(`${quoteText.textContent} - ${authorText.textContent}`);
+    alert("✅ Quote copied to clipboard!");
 });
 
 tweetBtn.addEventListener("click", () => {
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(quoteText.textContent + " " + authorText.textContent)}`;
     window.open(tweetUrl, "_blank");
 });
 
